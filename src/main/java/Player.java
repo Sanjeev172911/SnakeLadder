@@ -33,6 +33,7 @@ public class Player {
         while(!isWinner()){
             this.moves++;
             makeMove();
+            System.out.println("position of Player1 after "+this.moves+" is "+this.position);
         }
     }
     
