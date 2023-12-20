@@ -23,7 +23,7 @@ public class Player {
         int diceVal=RollDice();
         if(draw==.4) return;
         else if(draw<.4){
-            this.position=max(0,this.position-diceVal);
+            this.position=Math.max(0,this.position-diceVal);
         }else{
             if(this.position+diceVal<=100) this.position+=diceVal;
         }
