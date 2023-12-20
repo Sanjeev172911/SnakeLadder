@@ -18,7 +18,6 @@ public class Board {
             int startS=random.nextInt(max-min+1)+min;
             int endS=random.nextInt(max-startS+1)+startS;
 
-//            if(startL!=startS && endL!=endS && startL!=endS && endL!=startS)
             if(startL!=endS)
                 Snake.put(endS,startS);
         }

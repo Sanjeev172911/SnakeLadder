@@ -9,7 +9,7 @@ public class Player {
     }
 
     public boolean isWinner(){
-        return position==100;
+        return this.position==100;
     }
 
     public int RollDice(){
@@ -18,23 +18,45 @@ public class Player {
     }
 
 
-    public void makeMove(){
+    public void makeMove(Player p){
         double draw=Math.random();
         int diceVal=RollDice();
         if(draw==.4) return;
         else if(draw<.4){
-            this.position=Math.max(0,this.position-diceVal);
+            p.position=Math.max(0,p.position-diceVal);
         }else{
-            if(this.position+diceVal<=100) this.position+=diceVal;
+            if(p.position+diceVal<=100){
+                p.position+=diceVal;
+                makeMove(p);
+            }
         }
     }
 
     public void singlePlayerPlay(){
         while(!isWinner()){
             this.moves++;
-            makeMove();
+            makeMove(this);
             System.out.println("position of Player1 after "+this.moves+" is "+this.position);
         }
+    }
+
+    public void TwoPlayerPlay(Player p2){
+        int turn=0;
+        while(!this.isWinner() && !p2.isWinner()){
+            if(turn%2==0){
+                this.moves++;
+                makeMove(this);
+                System.out.println("position of Player1 after "+this.moves+" is "+this.position);
+            }else{
+                p2.moves++;
+                makeMove(p2);
+                System.out.println("position of Player2 after "+p2.moves+" is "+p2.position);
+            }
+            turn++;
+        }
+
+        if(this.isWinner()) System.out.println("Player1 is the winner");
+        else System.out.println("Player2 is the winner");
     }
     
 }
